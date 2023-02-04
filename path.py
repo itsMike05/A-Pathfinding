@@ -94,7 +94,7 @@ def heuristics(p1, p2):
     
     return abs(x1 - x2) + abs(y1 - y2)
 
-
+# Defining a grid 
 def make_grid(rows, width):
     grid = []
     gap = width // rows
@@ -103,3 +103,23 @@ def make_grid(rows, width):
         for j in range(rows):
             node = Node(i, j, gap, rows)
             grid[i].append(node)
+    return grid 
+
+
+# Drawing the grid lines
+def draw_grid(window, rows, width):
+    gap = width // rows
+    for i in range(rows):
+        pygame.draw.line(window, GREY, (0, i * gap), (width, i * gap)) 
+        for j in range(rows):
+            pygame.draw.line(window, GREY, (j * gap, 0), (j * gap, width))
+ 
+ 
+def draw(window, grid, rows, width):
+    
+    window.fill(WHITE)
+    
+    for row in grid:
+        for node in row:
+            node.draw(window)   
+       
