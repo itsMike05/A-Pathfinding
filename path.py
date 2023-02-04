@@ -34,4 +34,59 @@ class Node:
         self.neighbors = [], 
         self.total_rows = total_rows
         
+    def get_position(self):
+        return self.row, self.col
+    
+    
+    # Specify if a node has been checked 
+    def is_closed(self):
+        return self.color == RED
+    
+    # Specify if a node is open
+    def is_open(self):
+        return self.color == GREEN
+    
+    # Specify if a node is a barrier
+    def is_barrier(self):
+        return self.color == BLACK
+    
+    def is_start(self):
+        return self.color == ORANGE
+    
+    def is_end(self):
+        return self.color == BLUE
+    
+    def reset(self):
+        return self.color == WHITE
+    
+    
+    # Functions that are creating nodes
+    
+    def make_closed(self):
+        self.color = RED
         
+    def make_open(self):
+        self.color = GREEN
+        
+    def make_barrier(self):
+        self.color = BLACK
+        
+    def make_end(self):
+        self.color = BLUE
+        
+    def make_path(self):
+        self.color = PURPLE
+        
+    def draw(self, window):
+        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.width))
+        
+    def update_neighbors(self, grid):
+        pass
+    
+    # Less than function
+    def __lt__(self, other):
+        return False
+    
+    
+def heuristics(p1, p2):
+    pass
