@@ -21,3 +21,17 @@ BLACK = (0, 0, 0)
 GREY = (128, 128, 128)
 PURPLE = (128, 0, 128)
 ORANGE = (255, 165, 0)
+
+# Creating a Node class 
+class Node:
+    def __init__(self, row, col, width, total_rows):
+        self.row = row, 
+        self.col = col, 
+        self.x = row * width, 
+        self.y = col * width, 
+        self.width = width
+        self.color = WHITE,
+        self.neighbors = [], 
+        self.total_rows = total_rows
+        
+        
