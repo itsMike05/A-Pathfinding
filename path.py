@@ -71,6 +71,9 @@ class Node:
     def make_barrier(self):
         self.color = BLACK
         
+    def make_start(self):
+        self.color = ORANGE
+        
     def make_end(self):
         self.color = BLUE
         
@@ -123,3 +126,59 @@ def draw(window, grid, rows, width):
         for node in row:
             node.draw(window)   
        
+    draw_grid(window, rows, width)
+    pygame.display.update()
+    
+def get_clicked_postition(pos, rows, width):
+    gap = width // rows
+    y, x = pos
+    
+    row = y // gap
+    col = x // gap
+    
+    return row, col
+
+
+def main(window, width):
+    ROWS = 40
+    grid = make_grid(ROWS, width)
+    
+    start = None
+    end = None
+    run = True
+    started = False
+    
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                
+            if started:
+                continue
+            
+            # If LPM was pressed
+            if pygame.mouse.get_pressed()[0]:
+                pos = pygame.mouse.get_pos()
+                row, col = get_clicked_postition(pos, ROWS, width)
+                node = grid[row][col]
+                if not start:
+                    start = node
+                    start.make_start()
+                    
+                elif not end:
+                    end = node
+                    end.make_end()
+                    
+                elif node != start and node != end:
+                    node.make_barrier()
+ 
+            
+            # If PPM was pressed
+            if pygame.mouse.get_pressed()[2] :
+                pass
+                
+                
+    pygame.quit()
+    
+    
+main(WINDOW, WIDTH)
